@@ -11,6 +11,11 @@ int main() {
 
     fahr = min;
 
-
-    
+    while (fahr <= max)
+    {
+        celcus = (fahr - 32) * 5/9;
+        printf("%3.0f\t%6.2f\n",fahr,celcus);
+        fahr = fahr + range;
+    }
+    system("PAUSE");
 }
