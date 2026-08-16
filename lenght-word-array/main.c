@@ -36,13 +36,16 @@ int main()
 
         if (c == ' ' || c == '\t' || c == '\n')
         {
-            histogram[number_letter - 1]++;
+            if (number_letter <= size_histogram && number_letter > 0)
+            {
+                histogram[number_letter - 1]++;
+            }
             number_letter = 0;
             if (c == '\n') {
                 break;
             }
         }
-        else{
+        else {
             number_letter++;
         }
         c = getchar();
