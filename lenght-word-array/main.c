@@ -1,21 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
 
 
-void print_array(int array[], int size) {
-    int i;
-    for (i = 0; i < size; i++)
-    {
-        printf("%d", array[i]);
-    }
+// void print_array(int array[], int size) {
+//     int i;
+//     for (i = 0; i < size; i++)
+//     {
+//         printf("%d", array[i]);
+//     }
     
-}
+// }
 
 int higher_num_array(int array[], int size) {
     int max,i;
     max = array[0];
-    for (i = 0; i < size; i++) {
+    for (i = 1; i < size; i++) {
         if (max < array[i])
         {
             max = array[i];
@@ -26,38 +25,38 @@ int higher_num_array(int array[], int size) {
 
 int main()
 {
-    SetConsoleOutputCP(CP_UTF8);
-    int c, i,row,col;
-    int number_letter = 0, higter_num = 0;
-    int n_length[10] = {0};
-    int size_n_length;
-    size_n_length = sizeof(n_length) / sizeof(n_length[0]);
+    int c, row, col;
+    int number_letter = 0, max_count = 0;
+    int histogram[10] = {0};
+    int size_histogram;
+    size_histogram = sizeof(histogram) / sizeof(histogram[0]);
     c = getchar();
     while (c != EOF)
     {
-        if (c == '\n'){
-            n_length[number_letter - 1]++;
-            break;
-        }
-        else if (c == ' ' || c == '\t')
+
+        if (c == ' ' || c == '\t' || c == '\n')
         {
-            n_length[number_letter - 1]++;
+            histogram[number_letter - 1]++;
             number_letter = 0;
+            if (c == '\n') {
+                break;
+            }
         }
-        else
+        else{
             number_letter++;
+        }
         c = getchar();
     }
-    higter_num = higher_num_array(n_length,size_n_length);
+    max_count = higher_num_array(histogram,size_histogram);
     
-    for (row = 0; row < size_n_length; row++) {
-        for (col = 0; col < higter_num; col++)
+    for (row = 0; row < size_histogram; row++) {
+        for (col = 0; col < max_count; col++)
         {
-            if (n_length[row] > col)
+            if (histogram[row] > col)
             {
-                printf("▮");
+                printf("#");
             } else {
-                printf("▯");
+                printf("_");
             }
         }
         printf("\n");  
