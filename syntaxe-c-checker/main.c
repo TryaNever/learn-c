@@ -23,6 +23,7 @@ int main()
 
     int level_paren = 0;
     int in_string = 0;
+    int in_char = 0;
 
     for (i = 0; i < nb_crt_detected; i++)
     {
@@ -34,7 +35,7 @@ int main()
             return 0;
         }
 
-        if (lign[i] == '{' && in_string == 0 || lign[i] == '}' && in_string == 0)
+        if (lign[i] == '{' && in_string == 0 && in_char == 0 || lign[i] == '}' && in_string == 0 && in_char == 0)
         {
             if (lign[i] == '{')
             {
@@ -49,6 +50,10 @@ int main()
         {
             in_string = !in_string;
         }
+        if (lign[i] == '\'' && lign[i-1] != '\\')
+        {
+            in_char = !in_char;
+        }
     }
     if (level_paren != 0)
     {
@@ -58,6 +63,11 @@ int main()
     {
         printf("your miss close \"");
     }
+    if (in_char == 1)
+    {
+        printf("your miss close \'");
+    }
+    
     printf("a error detected : miss open {}  %d %d", level_paren, in_string);
     print_array(lign, i);
     system("PAUSE");
