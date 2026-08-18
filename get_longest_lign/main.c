@@ -1,36 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-void print_array(int array[], int size) {
+void print_array(int array[], int size)
+{
     int i;
     for (i = 0; i < size; i++)
     {
         printf("%d", array[i]);
     }
-    
 }
 
-int main() {
+int main()
+{
     int c;
     int index_longest = 0;
     int current_lign = 0;
-    char all_lign[] = {""};
+    int longest_lign[] = {};
 
     c = getchar();
     while ((c = getchar()) != EOF)
     {
-        if (c == '\n')
+        if ()
         {
-            all_lign[current_lign] += '\n';
-            all_lign[current_lign] += '\0';
-            current_lign++;
-        } else
-        {
-            all_lign[current_lign] += c;
+            if (c == '\n') {
+                longest_lign[current_lign] += '\n';
+                longest_lign[current_lign] += '\0';
+                current_lign++;
+            }
+            else {
+                longest_lign[current_lign] += c;
+            }
         }
     }
-    
-    print_array(all_lign,sizeof(all_lign) / sizeof(all_lign[0]));
+
+    print_array(longest_lign, sizeof(longest_lign) / sizeof(longest_lign[0]));
     system("PAUSE");
 }
