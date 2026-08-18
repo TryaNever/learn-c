@@ -14,52 +14,52 @@ int main()
 
     while ((c = getchar()) != EOF)
     {
-        if (c == '{' || c == '}' || c == '\"')
+        if (c == '{' || c == '}' || c == '\"' || c == '\\' || c == '\'')
         {
             lign[nb_crt_detected] = c;
             nb_crt_detected++;
         }
     }
 
-    int out, in;
-    int in_paren = 0;
+    int level_paren = 0;
+    int in_string = 0;
 
-    out = in = 0;
     for (i = 0; i < nb_crt_detected; i++)
     {
-        if (lign[i] == '{' && in_paren == 0)
+        if (level_paren < 0)
         {
-            in++;
+            printf("a error detected : miss open {}  %d %d", level_paren, in_string);
+            print_array(lign, i);
+            system("PAUSE");
+            return 0;
         }
-        else if (lign[i] == '}' && in_paren == 0)
-        {
-            out++;
-        }
-        else if (lign[i] == '\"' && in_paren == 0)
-        {
-            in++;
-            in_paren = 1;
-        }
-        else if (lign[i] == '\"' && in_paren == 1)
-        {
-            out++;
-            in_paren = 0;
-        }
-        else
-        {
-            printf("error in \"\" you miss close i think ;)");
-        }
-    }
-    if (in != out || in_paren == 1)
-    {   
-        printf("you miss close your {} ;)");
-    }
-    else
-    {
-        printf("nothing syntaxe error detected");
-    }
 
-    print_array(lign, nb_crt_detected);
+        if (lign[i] == '{' && in_string == 0 || lign[i] == '}' && in_string == 0)
+        {
+            if (lign[i] == '{')
+            {
+                level_paren++;
+            }
+            else if (lign[i] == '}')
+            {
+                level_paren--;
+            }
+        }
+        if (lign[i] == '\"' && lign[i-1] != '\\')
+        {
+            in_string = !in_string;
+        }
+    }
+    if (level_paren != 0)
+    {
+        printf("error detected : miss close {}");
+    }
+    if (in_string == 1)
+    {
+        printf("your miss close \"");
+    }
+    printf("a error detected : miss open {}  %d %d", level_paren, in_string);
+    print_array(lign, i);
     system("PAUSE");
     return 0;
 }
