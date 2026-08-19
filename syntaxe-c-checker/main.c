@@ -46,11 +46,11 @@ int main()
                 level_paren--;
             }
         }
-        if (lign[i] == '\"' && lign[i-1] != '\\')
+        if (lign[i] == '\"' && lign[i-1] != '\\' && in_char == 0)
         {
             in_string = !in_string;
         }
-        if (lign[i] == '\'' && lign[i-1] != '\\')
+        if (lign[i] == '\'' && lign[i-1] != '\\' && in_string == 0)
         {
             in_char = !in_char;
         }
