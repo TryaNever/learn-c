@@ -35,7 +35,7 @@ int main()
             return 0;
         }
 
-        if (lign[i] == '{' && in_string == 0 && in_char == 0 || lign[i] == '}' && in_string == 0 && in_char == 0)
+        if ((lign[i] == '{' || lign[i] == '}') && in_string == 0 && in_char == 0)
         {
             if (lign[i] == '{')
             {
