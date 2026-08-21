@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 int fixer_bits(int x, int y, int p, int n);
+int get_bits_n(int x , int n);
 void print_binary(unsigned int x);
 
 int main()
@@ -25,11 +26,14 @@ int main()
 int fixer_bits(int x, int y, int p, int n)
 {
     
-    unsigned int mask = ~(~0 << n);
-    y = y & mask;
-
+    y = get_bits_n(y,n);
 
     return y;
+}
+
+int get_bits_n(int x , int n) {
+    return x & ~(~0 << n);
+     
 }
 
 void print_binary(unsigned int x)
