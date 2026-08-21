@@ -14,7 +14,6 @@ int main()
 
     unsigned int res = fixer_bits(x, y, p, n);
 
-    print_binary(res);
     system("PAUSE");
 }
 
@@ -25,15 +24,23 @@ int main()
 
 int fixer_bits(int x, int y, int p, int n)
 {
-    
-    y = get_bits_n(y,n);
+    unsigned int mask;
 
-    return y;
+    y = get_bits_n(y,n);
+    y = y << p;
+
+    mask = ~(~0u << n) << p;
+
+    x = (x & ~mask) | y;
+
+    print_binary(x);
+
+    return x;
 }
 
 int get_bits_n(int x , int n) {
-    return x & ~(~0 << n);
-     
+    unsigned int mask = ~(~0u << n);
+    return x & mask;
 }
 
 void print_binary(unsigned int x)
