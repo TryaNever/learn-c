@@ -1,9 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "utilsdebug.h"
 
 #define MAXCRT 200
-
-void print_array(int array[], int size);
 
 int main()
 {
@@ -24,6 +23,8 @@ int main()
     int level_paren = 0;
     int in_string = 0;
     int in_char = 0;
+
+    print_array(lign, nb_crt_detected);
 
     for (i = 0; i < nb_crt_detected; i++)
     {
@@ -72,13 +73,4 @@ int main()
     print_array(lign, i);
     system("PAUSE");
     return 0;
-}
-
-void print_array(int array[], int size)
-{
-    int i;
-    for (i = 0; i < size; i++)
-    {
-        printf("%c", array[i]);
-    }
 }
