@@ -25,7 +25,7 @@ int main()
 
     for (int i = 0; i < many_people; i++)
     {
-        for (; class_note[i] != NULL && (class_note[i] > 20 || class_note[i] < 0);)
+        for (; class_note[i] > 20 || class_note[i] < 0;)
         {
             printf("The note for student %d : ", i + 1);
             scanf("%d", &class_note[i]);
