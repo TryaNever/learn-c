@@ -18,14 +18,14 @@ int main()
 
     int class_note[many_people];
 
-    for (size_t i = 0; i < many_people; i++)
+    for (int i = 0; i < many_people; i++)
     {
-        class_note[i] = NULL;
+        class_note[i] = 21;
     }
 
-    for (size_t i = 0; i < many_people; i++)
+    for (int i = 0; i < many_people; i++)
     {
-        for (; class_note[i] != NULL && class_note[i] >= 20 || class_note[i] <= 0;)
+        for (; class_note[i] != NULL && (class_note[i] >= 20 || class_note[i] <= 0);)
         {
             scanf("%d", &class_note[i]);
             if (class_note[i] >= 20 || class_note[i] <= 0)
@@ -34,8 +34,13 @@ int main()
             }
             else
             {
-                printf("its okay\n");
+                printf("The note are Valid\n");
             }
         }
     }
+    for (int i = 0; i < many_people; i++)
+    {
+        printf("Eleve %d: %d", i, class_note[i]);
+    }
+    return 0;
 }
