@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
+
+int get_note(int student_number);
 
 int main()
 {
@@ -20,19 +21,7 @@ int main()
 
     for (int i = 0; i < many_people; i++)
     {
-        do
-        {
-            printf("The note for student %d : ", i + 1);
-            scanf("%d", &class_note[i]);
-            if (class_note[i] > 20 || class_note[i] < 0)
-            {
-                printf("the note between 0 and 20\n");
-            }
-            else
-            {
-                printf("The note are Valid\n");
-            }
-        } while (class_note[i] > 20 || class_note[i] < 0);
+        class_note[i] = get_note(i + 1);
     }
 
     for (int i = 0; i < many_people; i++)
@@ -40,4 +29,23 @@ int main()
         printf("Eleve %d: %d \n", i + 1, class_note[i]);
     }
     return 0;
+}
+
+int get_note(int student_number)
+{
+    int note;
+
+    do
+    {
+        printf("The note for student %d : ", student_number + 1);
+        scanf("%d", &note);
+        if (note > 20 || note < 0)
+        {
+            printf("the note between 0 and 20\n");
+        }
+        else
+        {
+            printf("The note are Valid\n");
+        }
+    } while (note > 20 || note < 0);
 }
