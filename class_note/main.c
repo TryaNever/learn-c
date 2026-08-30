@@ -18,14 +18,9 @@ int main()
 
     int class_note[many_people];
 
-    for (int i = 0; i <= many_people; i++)
-    {
-        class_note[i] = 21;
-    }
-
     for (int i = 0; i < many_people; i++)
     {
-        for (; class_note[i] > 20 || class_note[i] < 0;)
+        do
         {
             printf("The note for student %d : ", i + 1);
             scanf("%d", &class_note[i]);
@@ -37,8 +32,9 @@ int main()
             {
                 printf("The note are Valid\n");
             }
-        }
+        } while (class_note[i] > 20 || class_note[i] < 0);
     }
+
     for (int i = 0; i < many_people; i++)
     {
         printf("Eleve %d: %d \n", i + 1, class_note[i]);
